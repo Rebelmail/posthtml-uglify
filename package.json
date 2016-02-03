@@ -1,7 +1,7 @@
 {
   "name": "posthtml-uglify",
   "version": "1.2.1",
-  "description": "Uglify CSS identifiers in HTML for the purposes of compression and obfuscation",
+  "description": "A PostHTML plugin to rewrite CSS identifiers in HTML",
   "main": "index.js",
   "scripts": {
     "test": "istanbul test _mocha -- --recursive",

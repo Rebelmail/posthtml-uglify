@@ -3,7 +3,8 @@
 [![Build Status](https://travis-ci.org/Rebelmail/html-uglify.svg?branch=master)](https://travis-ci.org/Rebelmail/html-uglify)
 [![NPM version](https://badge.fury.io/js/html-uglify.png)](http://badge.fury.io/js/html-uglify)
 
-Uglify CSS identifiers in HTML for the purposes of compression and obfuscation.
+A [PostHTML][1] plugin to rewrite CSS identifiers in HTML for the purposes of
+compression and obfuscation.
 
 ## Installation
 
@@ -39,3 +40,5 @@ posthtml()
 npm install
 npm test
 ```
+
+[1]: https://github.com/posthtml/posthtml
