@@ -6,7 +6,7 @@ var parser = require('posthtml-parser');
 var render = require('posthtml-render');
 var walk = require('posthtml/lib/api').walk;
 
-var plugin = require('../lib/main');
+var plugin = require('..');
 var HTMLUglify = plugin.HTMLUglify;
 var htmlUglify = new HTMLUglify();
 
@@ -43,6 +43,10 @@ describe('HTMLUglify', function() {
     it('returns true if class is in whitelist for a unicode character', function() {
       var whitelisted = htmlUglify.isWhitelisted('class', '★');
       assert.isTrue(whitelisted);
+    });
+    it('returns false if an unsupported type is passed', function() {
+      var whitelisted = htmlUglify.isWhitelisted('foo', 'bar');
+      assert.isFalse(whitelisted);
     });
   });
 

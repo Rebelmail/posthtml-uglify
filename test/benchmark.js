@@ -3,10 +3,10 @@
 var fs = require('fs');
 var Benchmark = require('benchmark');
 var posthtml = require('posthtml');
-var uglify = require('../lib/main.js');
+var uglify = require('..');
 
 var suite = new Benchmark.Suite();
-var htmlUglify = posthtml().use(uglify());
+var posthtmlUglify = posthtml().use(uglify());
 
 var html = fs.readFileSync('./test/test.html');
 
@@ -16,7 +16,7 @@ suite
   .add('#process', {
     defer: true,
     fn: function(deferred) {
-      htmlUglify.process(html).then(function() {
+      posthtmlUglify.process(html).then(function() {
         deferred.resolve();
       });
     }
