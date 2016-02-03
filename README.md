@@ -1,7 +1,7 @@
 # posthtml-uglify
 
-[![Build Status](https://travis-ci.org/Rebelmail/html-uglify.svg?branch=master)](https://travis-ci.org/Rebelmail/html-uglify)
-[![NPM version](https://badge.fury.io/js/html-uglify.png)](http://badge.fury.io/js/html-uglify)
+[![Build Status](https://travis-ci.org/Rebelmail/posthtml-uglify.svg?branch=master)](https://travis-ci.org/Rebelmail/posthtml-uglify)
+[![Coverage Status](https://coveralls.io/repos/github/Rebelmail/posthtml-uglify/badge.svg?branch=master)](https://coveralls.io/github/Rebelmail/posthtml-uglify?branch=master)
 
 A [PostHTML][1] plugin to rewrite CSS identifiers in HTML for the purposes of
 compression and obfuscation.
