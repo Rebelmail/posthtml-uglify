@@ -14,6 +14,7 @@
   },
   "keywords": [
     "posthtml",
+    "posthtml-plugin",
     "html",
     "uglify",
     "compress",
