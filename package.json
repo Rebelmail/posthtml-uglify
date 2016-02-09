@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RebelMail/html-uglify.git"
+    "url": "https://github.com/RebelMail/posthtml-uglify.git"
   },
   "keywords": [
     "posthtml",
@@ -23,9 +23,9 @@
   "author": "Rebelmail",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RebelMail/html-uglify/issues"
+    "url": "https://github.com/RebelMail/posthtml-uglify/issues"
   },
-  "homepage": "https://github.com/RebelMail/html-uglify",
+  "homepage": "https://github.com/RebelMail/posthtml-uglify",
   "dependencies": {
     "hashids": "^1.0.2",
     "postcss-safe-parser": "^1.0.4",
