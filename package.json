@@ -1,6 +1,6 @@
 {
   "name": "posthtml-uglify",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A PostHTML plugin to rewrite CSS identifiers in HTML",
   "main": "index.js",
   "scripts": {
