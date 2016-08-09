@@ -27,18 +27,18 @@
   },
   "homepage": "https://github.com/RebelMail/posthtml-uglify",
   "dependencies": {
-    "hashids": "^1.0.2",
-    "postcss-safe-parser": "^1.0.4",
-    "postcss-selector-parser": "^2.1.1",
+    "hashids": "^1.1.0",
+    "postcss-safe-parser": "^1.0.7",
+    "postcss-selector-parser": "^2.2.0",
     "posthtml": "^0.9.0",
     "posthtml-parser": "^0.2.0",
-    "posthtml-render": "^1.0.5"
+    "posthtml-render": "^1.0.6"
   },
   "devDependencies": {
-    "benchmark": "^2.1.0",
+    "benchmark": "^2.1.1",
     "chai": "^3.5.0",
-    "coveralls": "^2.11.6",
-    "istanbul": "^0.4.2",
-    "mocha": "^3.0.1"
+    "coveralls": "^2.11.12",
+    "istanbul": "^0.4.4",
+    "mocha": "^3.0.2"
   }
 }
