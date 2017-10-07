@@ -22,7 +22,7 @@ var posthtml = require('posthtml');
 var uglify = require('posthtml-uglify');
 
 posthtml()
-  .use(uglify({ whitelist: '.bar' }))
+  .use(uglify({ whitelist: ['.bar', '#foo', /\.col-xs-.*/, /#main.+/] }))
   .process('<style>#foo { color: red } .bar { color: blue }</style><div id="foo" class="bar">baz</div>')
   .then(function(result) {
     console.log(result.html); //=> '<style>#xz { color: red } .bar { color: blue }</style><div id="xz" class="bar">baz</div>'
