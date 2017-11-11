@@ -4,8 +4,8 @@
   "description": "A PostHTML plugin to rewrite CSS identifiers in HTML",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul test _mocha -- --recursive",
-    "coveralls": "istanbul cover _mocha --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "test": "jest",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "bench": "node test/benchmark.js"
   },
   "repository": {
@@ -27,18 +27,19 @@
   },
   "homepage": "https://github.com/RebelMail/posthtml-uglify",
   "dependencies": {
-    "hashids": "^1.1.0",
-    "postcss-safe-parser": "^1.0.7",
-    "postcss-selector-parser": "^2.2.0",
-    "posthtml": "^0.9.0",
-    "posthtml-parser": "^0.2.0",
+    "hashids": "^1.1.4",
+    "postcss-safe-parser": "^3.0.1",
+    "postcss-selector-parser": "^3.1.1",
+    "posthtml": "^0.9.2",
+    "posthtml-parser": "^0.2.1",
     "posthtml-render": "^1.0.6"
   },
   "devDependencies": {
-    "benchmark": "^2.1.1",
-    "chai": "^3.5.0",
-    "coveralls": "^2.11.12",
-    "istanbul": "^0.4.4",
-    "mocha": "^3.0.2"
+    "benchmark": "^2.1.4",
+    "coveralls": "^3.0.0",
+    "jest": "^21.2.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
