@@ -6,11 +6,11 @@
   "scripts": {
     "test": "jest",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
-    "bench": "node test/benchmark.js"
+    "bench": "node ./scripts/benchmark.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RebelMail/posthtml-uglify.git"
+    "url": "https://github.com/Rebelmail/posthtml-uglify.git"
   },
   "keywords": [
     "posthtml",
@@ -20,14 +20,14 @@
     "compress",
     "minify"
   ],
-  "author": "Rebelmail",
+  "author": "Rebel",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RebelMail/posthtml-uglify/issues"
+    "url": "https://github.com/Rebelmail/posthtml-uglify/issues"
   },
-  "homepage": "https://github.com/RebelMail/posthtml-uglify",
+  "homepage": "https://github.com/Rebelmail/posthtml-uglify",
   "dependencies": {
-    "hashids": "^1.1.4",
+    "css-class-generator": "^1.0.1",
     "postcss-safe-parser": "^3.0.1",
     "postcss-selector-parser": "^3.1.1",
     "posthtml": "^0.9.2",
@@ -37,6 +37,9 @@
   "devDependencies": {
     "benchmark": "^2.1.4",
     "coveralls": "^3.0.0",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
     "jest": "^21.2.1"
   },
   "jest": {
