@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
-    "bench": "node test/benchmark.js"
+    "bench": "node ./scripts/benchmark.js"
   },
   "repository": {
     "type": "git",

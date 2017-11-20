@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 const fs = require('fs');
+const path = require('path');
 const Benchmark = require('benchmark');
 const posthtml = require('posthtml');
 const uglify = require('..');
@@ -8,7 +9,7 @@ const uglify = require('..');
 const suite = new Benchmark.Suite();
 const posthtmlUglify = posthtml().use(uglify());
 
-const html = fs.readFileSync('./test/test.html');
+const html = fs.readFileSync(path.join(__dirname, '..', 'test', 'test.html'));
 
 console.log('Running benchmark');
 
