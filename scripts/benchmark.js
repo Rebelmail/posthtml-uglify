@@ -1,4 +1,4 @@
-'use strict';
+/* eslint-disable */
 
 const fs = require('fs');
 const Benchmark = require('benchmark');
@@ -17,7 +17,7 @@ suite
     defer: true,
     fn: (deferred) => {
       posthtmlUglify.process(html).then(() => deferred.resolve());
-    }
+    },
   })
   .on('cycle', event => console.log(String(event.target)))
   .run({ async: true });
