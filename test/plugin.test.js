@@ -246,13 +246,13 @@ describe('HTMLUglify', () => {
       const lookups = { id: { email: 'ab' } };
       const html = '<style>label[for="email"]{ color: blue; }</style>';
       const result = htmlUglify.rewriteStyles(parse(html), lookups);
-      expect(render(result)).toBe('<style>label[for="ab"]{ color: blue; }</style>');
+      expect(render(result)).toBe('<style>label[for=ab]{ color: blue; }</style>');
     });
     it('rewrites a for= with the same name as the element', () => {
       const lookups = { id: { label: 'ab' } };
       const html = '<style>label[for="label"]{ color: blue; }</style>';
       const result = htmlUglify.rewriteStyles(parse(html), lookups);
-      expect(render(result)).toBe('<style>label[for="ab"]{ color: blue; }</style>');
+      expect(render(result)).toBe('<style>label[for=ab]{ color: blue; }</style>');
     });
     it('rewrites an id= given lookups', () => {
       const lookups = { id: { email: 'ab' } };
@@ -264,13 +264,13 @@ describe('HTMLUglify', () => {
       const lookups = { id: { email: 'ab' } };
       const html = '<style>label[id="email"]{ color: blue; }</style>';
       const result = htmlUglify.rewriteStyles(parse(html), lookups);
-      expect(render(result)).toBe('<style>label[id="ab"]{ color: blue; }</style>');
+      expect(render(result)).toBe('<style>label[id=ab]{ color: blue; }</style>');
     });
     it('rewrites an id= with quotes and with the same name as the element', () => {
       const lookups = { id: { label: 'ab' } };
       const html = '<style>label[id="label"]{ color: blue; }</style>';
       const result = htmlUglify.rewriteStyles(parse(html), lookups);
-      expect(render(result)).toBe('<style>label[id="ab"]{ color: blue; }</style>');
+      expect(render(result)).toBe('<style>label[id=ab]{ color: blue; }</style>');
     });
     it('rewrites a class given lookups', () => {
       const lookups = { class: { email: 'ab' } };
