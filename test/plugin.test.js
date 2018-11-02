@@ -104,39 +104,39 @@ describe('HTMLUglify', () => {
     });
 
     it('updates lookups', () => {
-      HTMLUglify.insertLookup('class', 'testClass', 'A', lookups);
-      expect(lookups.class.testClass).toBe('A');
+      HTMLUglify.insertLookup('class', 'testClass', 'a', lookups);
+      expect(lookups.class.testClass).toBe('a');
     });
   });
 
   describe('#generatePointer', () => {
     it('returns A for first id', () => {
       const pointer = htmlUglify.generatePointer('id');
-      expect(pointer).toBe('A');
+      expect(pointer).toBe('a');
     });
     it('returns A for first class', () => {
       const pointer = htmlUglify.generatePointer('class');
-      expect(pointer).toBe('A');
+      expect(pointer).toBe('a');
     });
   });
 
   describe('#pointer', () => {
     it('generates a new pointer', () => {
       const pointer = htmlUglify.pointer('class', 'newClass', {});
-      expect(pointer).toBe('A');
+      expect(pointer).toBe('a');
     });
     it('skips whitelisted pointers', () => {
-      htmlUglify.whitelist = ['.A'];
+      htmlUglify.whitelist = ['.a'];
       const lookups = {};
       const pointer = htmlUglify.pointer('class', 'newClass', lookups);
-      expect(pointer).toBe('B');
+      expect(pointer).toBe('b');
     });
     it('finds an existing class pointer', () => {
       const lookups = {
-        class: { someClass: 'A' },
+        class: { someClass: 'a' },
       };
       const pointer = htmlUglify.pointer('class', 'someClass', lookups);
-      expect(pointer).toBe('A');
+      expect(pointer).toBe('a');
     });
     it('finds an existing id pointer', () => {
       const lookups = {
@@ -169,7 +169,7 @@ describe('HTMLUglify', () => {
     it('works with empty lookups', () => {
       const lookups = {};
       htmlUglify.pointerizeIdAndFor('id', node, lookups);
-      expect(lookups).toEqual({ id: { one: 'A' } });
+      expect(lookups).toEqual({ id: { one: 'a' } });
     });
     it('works with existing lookup', () => {
       const lookups = { class: { one: 'ab' } };
@@ -196,18 +196,18 @@ describe('HTMLUglify', () => {
     it('works with empty lookups', () => {
       const lookups = {};
       htmlUglify.pointerizeClass(node, lookups);
-      expect(lookups).toEqual({ class: { one: 'A', two: 'B' } });
+      expect(lookups).toEqual({ class: { one: 'a', two: 'b' } });
     });
     it('works with single lookup', () => {
       const lookups = { class: { one: 'ab' } };
       htmlUglify.pointerizeClass(node, lookups);
-      expect(lookups).toEqual({ class: { one: 'ab', two: 'A' } });
+      expect(lookups).toEqual({ class: { one: 'ab', two: 'a' } });
     });
     it('works with whitelist', () => {
       const lookups = {};
       htmlUglify.whitelist = ['.two'];
       htmlUglify.pointerizeClass(node, lookups);
-      expect(lookups).toEqual({ class: { one: 'A' } });
+      expect(lookups).toEqual({ class: { one: 'a' } });
     });
   });
 
@@ -222,7 +222,7 @@ describe('HTMLUglify', () => {
       const lookups = { };
       const html = '<style>#A{ color: red; }</style>';
       const result = htmlUglify.rewriteStyles(parse(html), lookups);
-      expect(render(result)).toBe('<style>#A{ color: red; }</style>');
+      expect(render(result)).toBe('<style>#a{ color: red; }</style>');
     });
     it('rewrites an id with the same name as the element', () => {
       const lookups = { id: { label: 'ab' } };
@@ -240,7 +240,7 @@ describe('HTMLUglify', () => {
       const lookups = {};
       const html = '<style>label[for=email]{ color: blue; }</style>';
       const result = htmlUglify.rewriteStyles(parse(html), lookups);
-      expect(render(result)).toBe('<style>label[for=A]{ color: blue; }</style>');
+      expect(render(result)).toBe('<style>label[for=a]{ color: blue; }</style>');
     });
     it('rewrites a for= with quotes given lookups', () => {
       const lookups = { id: { email: 'ab' } };
@@ -311,7 +311,7 @@ describe('HTMLUglify', () => {
     it('handles malformed syntax', () => {
       const html = '<style>@media{.media{background: red}</style>';
       const result = htmlUglify.rewriteStyles(parse(html));
-      expect(render(result)).toBe('<style>@media{.A{background: red}}</style>');
+      expect(render(result)).toBe('<style>@media{.a{background: red}}</style>');
     });
   });
 
@@ -319,104 +319,104 @@ describe('HTMLUglify', () => {
     it('rewrites an id', () => {
       const html = '<h1 id="abe">Header</h1>';
       const result = htmlUglify.rewriteElements(parse(html));
-      expect(render(result)).toBe('<h1 id="A">Header</h1>');
+      expect(render(result)).toBe('<h1 id="a">Header</h1>');
     });
     it('rewrites a class', () => {
       const html = '<h1 class="abe">Header</h1>';
       const result = htmlUglify.rewriteElements(parse(html));
-      expect(render(result)).toBe('<h1 class="A">Header</h1>');
+      expect(render(result)).toBe('<h1 class="a">Header</h1>');
     });
     it('rewrites multiple classes', () => {
       const html = '<h1 class="foo bar">Header</h1>';
       const result = htmlUglify.rewriteElements(parse(html));
-      expect(render(result)).toBe('<h1 class="A B">Header</h1>');
+      expect(render(result)).toBe('<h1 class="a b">Header</h1>');
     });
     it('rewrites multiple classes with more than one space between them', () => {
       const html = '<h1 class="foo   bar">Header</h1>';
       const result = htmlUglify.rewriteElements(parse(html));
-      expect(render(result)).toBe('<h1 class="A B">Header</h1>');
+      expect(render(result)).toBe('<h1 class="a b">Header</h1>');
     });
     it('rewrites a for', () => {
       const html = '<label for="abe">Label</h1>';
       const result = htmlUglify.rewriteElements(parse(html));
-      expect(render(result)).toBe('<label for="A">Label</label>');
+      expect(render(result)).toBe('<label for="a">Label</label>');
     });
     it('rewrites multiple nested ids, classes, and fors', () => {
       const html = '<h1 id="header">Header <strong id="strong"><span id="span">1</span></strong></h1><label for="something">Something</label><label for="null">null</label><div class="some classes">Some Classes</div>';
       const result = htmlUglify.rewriteElements(parse(html));
-      expect(render(result)).toBe('<h1 id="A">Header <strong id="B"><span id="C">1</span></strong></h1><label for="D">Something</label><label for="E">null</label><div class="A B">Some Classes</div>');
+      expect(render(result)).toBe('<h1 id="a">Header <strong id="b"><span id="c">1</span></strong></h1><label for="d">Something</label><label for="e">null</label><div class="a b">Some Classes</div>');
     });
     it('rewrites ids and labels to match when matching', () => {
       const html = '<h1 id="header">Header</h1><label for="header">Something</label><label for="header">Other</label>';
       const result = htmlUglify.rewriteElements(parse(html));
-      expect(render(result)).toBe('<h1 id="A">Header</h1><label for="A">Something</label><label for="A">Other</label>');
+      expect(render(result)).toBe('<h1 id="a">Header</h1><label for="a">Something</label><label for="a">Other</label>');
     });
     it('rewrites multiple uses of the same class to the correct value', () => {
       const html = '<h1 class="header">Header</h1><label class="header">Something</label><div class="header">Other</div>';
       const result = htmlUglify.rewriteElements(parse(html));
-      expect(render(result)).toBe('<h1 class="A">Header</h1><label class="A">Something</label><div class="A">Other</div>');
+      expect(render(result)).toBe('<h1 class="a">Header</h1><label class="a">Something</label><div class="a">Other</div>');
     });
     it('rewrites multiple uses of the same class to the correct value when differing classes exist', () => {
       const html = '<h1 class="header">Header</h1><label class="header">Something</label><div class="other">Other</div><div class="again">Again</div>';
       const result = htmlUglify.rewriteElements(parse(html));
-      expect(render(result)).toBe('<h1 class="A">Header</h1><label class="A">Something</label><div class="B">Other</div><div class="C">Again</div>');
+      expect(render(result)).toBe('<h1 class="a">Header</h1><label class="a">Something</label><div class="b">Other</div><div class="c">Again</div>');
     });
     it('rewrites other class combinations', () => {
       const html = '<h1 class="header other">Header</h1><label class="header">Something</label><div class="other">Other</div><div class="again">Again</div>';
       const result = htmlUglify.rewriteElements(parse(html));
-      expect(render(result)).toBe('<h1 class="A B">Header</h1><label class="A">Something</label><div class="B">Other</div><div class="C">Again</div>');
+      expect(render(result)).toBe('<h1 class="a b">Header</h1><label class="a">Something</label><div class="b">Other</div><div class="c">Again</div>');
     });
   });
 
   describe('#process', () => {
     it('uglifies style and html', () => {
       const { html } = plugin.process("<style>.test#other{}</style><p class='test' id='other'></p>");
-      expect(html).toBe('<style>.A#A{}</style><p class="A" id="A"></p>');
+      expect(html).toBe('<style>.a#a{}</style><p class="a" id="a"></p>');
     });
     it('uglifies media query with no name', () => {
       const { html } = plugin.process("<style>@media {.media{ color: red; }}</style><div class='media'>media</div>");
-      expect(html).toBe('<style>@media {.A{ color: red; }}</style><div class="A">media</div>');
+      expect(html).toBe('<style>@media {.a{ color: red; }}</style><div class="a">media</div>');
     });
     it('uglifies media queries inside of media queries', () => {
       const { html } = plugin.process("<style>@media screen{@media screen{.media-nested{background:red;}}}</style><div class='media-nested'>media-nested</div>");
-      expect(html).toBe('<style>@media screen{@media screen{.A{background:red;}}}</style><div class="A">media-nested</div>');
+      expect(html).toBe('<style>@media screen{@media screen{.a{background:red;}}}</style><div class="a">media-nested</div>');
     });
     it('uglifies media queries inside of media queries inside of media queries', () => {
       const { html } = plugin.process("<style>@media screen{@media screen{@media screen{.media-double-nested{background:red;}}}}</style><div class='media-double-nested'>media-double-nested</div>");
-      expect(html).toBe('<style>@media screen{@media screen{@media screen{.A{background:red;}}}}</style><div class="A">media-double-nested</div>');
+      expect(html).toBe('<style>@media screen{@media screen{@media screen{.a{background:red;}}}}</style><div class="a">media-double-nested</div>');
     });
     it('uglifies css inside @supports at-rule', () => {
       const { html } = plugin.process("<style>@supports (animation) { .someClass {} }</style><div class='someClass'></div>");
-      expect(html).toBe('<style>@supports (animation) { .A {} }</style><div class="A"></div>');
+      expect(html).toBe('<style>@supports (animation) { .a {} }</style><div class="a"></div>');
     });
     it('uglifies with whitelisting for ids and classes', () => {
       const whitelist = ['#noform', '.withform'];
       const { html } = plugin.process("<style>#noform { color: red; } .withform{ color: red } #other{ color: red; }</style><div id='noform' class='noform'>noform</div><div class='withform'>withform</div><div id='other'>other</div>", { salt: 'use the force harry', whitelist });
-      expect(html).toBe('<style>#noform { color: red; } .withform{ color: red } #A{ color: red; }</style><div id="noform" class="A">noform</div><div class="withform">withform</div><div id="A">other</div>');
+      expect(html).toBe('<style>#noform { color: red; } .withform{ color: red } #a{ color: red; }</style><div id="noform" class="a">noform</div><div class="withform">withform</div><div id="a">other</div>');
     });
     it('uglifies a class with a ::before', () => {
       const { html } = plugin.process("<style>.before::before{color: red}</style><div class='before'>before</div>");
-      expect(html).toBe('<style>.A::before{color: red}</style><div class="A">before</div>');
+      expect(html).toBe('<style>.a::before{color: red}</style><div class="a">before</div>');
     });
     it('uglifies class attribute selectors', () => {
       const { html } = plugin.process('<style>body[yahoo] *[class*=paddingreset] {}</style><div class="paddingreset1">paddingreset1</div>');
-      expect(html).toBe('<style>body[yahoo] *[class*=A] {}</style><div class="A1">paddingreset1</div>');
+      expect(html).toBe('<style>body[yahoo] *[class*=a] {}</style><div class="a1">paddingreset1</div>');
     });
     it('uglifies id attribute selectors', () => {
       const { html } = plugin.process('<style>body[yahoo] *[id*=paddingreset] { padding:0 !important; }</style><div id="paddingreset1">paddingreset1</div>');
-      expect(html).toBe('<style>body[yahoo] *[id*=A] { padding:0 !important; }</style><div id="A1">paddingreset1</div>');
+      expect(html).toBe('<style>body[yahoo] *[id*=a] { padding:0 !important; }</style><div id="a1">paddingreset1</div>');
     });
     it('uglifies for attribute selectors', () => {
       const { html } = plugin.process('<style>body[yahoo] *[id*=paddingreset] { padding:0 !important; }</style><div for="paddingreset1">paddingreset1</div>');
-      expect(html).toBe('<style>body[yahoo] *[id*=A] { padding:0 !important; }</style><div for="A1">paddingreset1</div>');
+      expect(html).toBe('<style>body[yahoo] *[id*=a] { padding:0 !important; }</style><div for="a1">paddingreset1</div>');
     });
     it('uglifies attribute selectors correctly towards the end of a stylesheet', () => {
       const { html } = plugin.process("<style>.test{} .alphatest{} *[class*=test]{}</style><p class='alphatest'></p>");
-      expect(html).toBe('<style>.A{} .alphaA{} *[class*=A]{}</style><p class="alphaA"></p>');
+      expect(html).toBe('<style>.a{} .alphaa{} *[class*=a]{}</style><p class="alphaa"></p>');
     });
     it('uglifies attribute selectors with spaced classes', () => {
       const { html } = plugin.process("<style>.test{} .alphatest{} *[class*=test]{}</style><p class='alphatest beta'></p>");
-      expect(html).toBe('<style>.A{} .alphaA{} *[class*=A]{}</style><p class="alphaA B"></p>');
+      expect(html).toBe('<style>.a{} .alphaa{} *[class*=a]{}</style><p class="alphaa b"></p>');
     });
   });
 
@@ -424,71 +424,71 @@ describe('HTMLUglify', () => {
     describe('equal selector', () => {
       it('uglifies', () => {
         let { html } = plugin.process('<style>*[class=test] {}</style><div class="test"></div>');
-        expect(html).toBe('<style>*[class=A] {}</style><div class="A"></div>');
+        expect(html).toBe('<style>*[class=a] {}</style><div class="a"></div>');
 
         html = plugin.process('<style>*[id=test] {}</style><div id="test"></div>').html;
-        expect(html).toBe('<style>*[id=A] {}</style><div id="A"></div>');
+        expect(html).toBe('<style>*[id=a] {}</style><div id="a"></div>');
 
         html = plugin.process('<style>*[id=test] {}</style><div for="test"></div>').html;
-        expect(html).toBe('<style>*[id=A] {}</style><div for="A"></div>');
+        expect(html).toBe('<style>*[id=a] {}</style><div for="a"></div>');
       });
     });
     describe('anywhere selector', () => {
       it('uglifies in the middle of a string', () => {
         let { html } = plugin.process('<style>*[class*=test] {}</style><div class="ZZtestZZ"></div>');
-        expect(html).toBe('<style>*[class*=A] {}</style><div class="ZZAZZ"></div>');
+        expect(html).toBe('<style>*[class*=a] {}</style><div class="ZZaZZ"></div>');
 
         html = plugin.process('<style>*[id*=test] {}</style><div id="ZZtestZZ"></div>').html;
-        expect(html).toBe('<style>*[id*=A] {}</style><div id="ZZAZZ"></div>');
+        expect(html).toBe('<style>*[id*=a] {}</style><div id="ZZaZZ"></div>');
 
         html = plugin.process('<style>*[id*=test] {}</style><div for="ZZtestZZ"></div>').html;
-        expect(html).toBe('<style>*[id*=A] {}</style><div for="ZZAZZ"></div>');
+        expect(html).toBe('<style>*[id*=a] {}</style><div for="ZZaZZ"></div>');
       });
 
       it('uglifies at the start of a string', () => {
         let { html } = plugin.process('<style>*[class*=test] {}</style><div class="testZZ"></div>');
-        expect(html).toBe('<style>*[class*=A] {}</style><div class="AZZ"></div>');
+        expect(html).toBe('<style>*[class*=a] {}</style><div class="aZZ"></div>');
 
         html = plugin.process('<style>*[id*=test] {}</style><div id="testZZ"></div>').html;
-        expect(html).toBe('<style>*[id*=A] {}</style><div id="AZZ"></div>');
+        expect(html).toBe('<style>*[id*=a] {}</style><div id="aZZ"></div>');
 
         html = plugin.process('<style>*[id*=test] {}</style><div for="testZZ"></div>').html;
-        expect(html).toBe('<style>*[id*=A] {}</style><div for="AZZ"></div>');
+        expect(html).toBe('<style>*[id*=a] {}</style><div for="aZZ"></div>');
       });
 
       it('uglifies at the end of a string', () => {
         let { html } = plugin.process('<style>*[class*=test] {}</style><div class="ZZtest"></div>');
-        expect(html).toBe('<style>*[class*=A] {}</style><div class="ZZA"></div>');
+        expect(html).toBe('<style>*[class*=a] {}</style><div class="ZZa"></div>');
 
         html = plugin.process('<style>*[id*=test] {}</style><div id="ZZtest"></div>').html;
-        expect(html).toBe('<style>*[id*=A] {}</style><div id="ZZA"></div>');
+        expect(html).toBe('<style>*[id*=a] {}</style><div id="ZZa"></div>');
 
         html = plugin.process('<style>*[id*=test] {}</style><div for="ZZtest"></div>').html;
-        expect(html).toBe('<style>*[id*=A] {}</style><div for="ZZA"></div>');
+        expect(html).toBe('<style>*[id*=a] {}</style><div for="ZZa"></div>');
       });
     });
     describe('begins with selector', () => {
       it('uglifies at the start of a string', () => {
         let { html } = plugin.process('<style>*[class^=test] {}</style><div class="testZZ"></div>');
-        expect(html).toBe('<style>*[class^=A] {}</style><div class="AZZ"></div>');
+        expect(html).toBe('<style>*[class^=a] {}</style><div class="aZZ"></div>');
 
         html = plugin.process('<style>*[id^=test] {}</style><div id="testZZ"></div>').html;
-        expect(html).toBe('<style>*[id^=A] {}</style><div id="AZZ"></div>');
+        expect(html).toBe('<style>*[id^=a] {}</style><div id="aZZ"></div>');
 
         html = plugin.process('<style>*[id^=test] {}</style><div for="testZZ"></div>').html;
-        expect(html).toBe('<style>*[id^=A] {}</style><div for="AZZ"></div>');
+        expect(html).toBe('<style>*[id^=a] {}</style><div for="aZZ"></div>');
       });
     });
     describe('ends with selector', () => {
       it('uglifies at the end of a string', () => {
         let { html } = plugin.process('<style>*[class$=test] {}</style><div class="ZZtest"></div>');
-        expect(html).toBe('<style>*[class$=A] {}</style><div class="ZZA"></div>');
+        expect(html).toBe('<style>*[class$=a] {}</style><div class="ZZa"></div>');
 
         html = plugin.process('<style>*[id$=test] {}</style><div id="ZZtest"></div>').html;
-        expect(html).toBe('<style>*[id$=A] {}</style><div id="ZZA"></div>');
+        expect(html).toBe('<style>*[id$=a] {}</style><div id="ZZa"></div>');
 
         html = plugin.process('<style>*[id$=test] {}</style><div for="ZZtest"></div>').html;
-        expect(html).toBe('<style>*[id$=A] {}</style><div for="ZZA"></div>');
+        expect(html).toBe('<style>*[id$=a] {}</style><div for="ZZa"></div>');
       });
     });
   });

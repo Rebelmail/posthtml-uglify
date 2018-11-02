@@ -1,6 +1,6 @@
 {
   "name": "posthtml-uglify",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "A PostHTML plugin to rewrite CSS identifiers in HTML",
   "main": "index.js",
   "scripts": {
@@ -27,20 +27,20 @@
   },
   "homepage": "https://github.com/Rebelmail/posthtml-uglify",
   "dependencies": {
-    "css-class-generator": "^1.0.1",
-    "postcss-safe-parser": "^3.0.1",
+    "css-class-generator": "github:Rebelmail/css-class-generator#only-lowercase",
+    "postcss-safe-parser": "^4.0.1",
     "postcss-selector-parser": "^3.1.1",
-    "posthtml": "^0.9.2",
-    "posthtml-parser": "^0.2.1",
-    "posthtml-render": "^1.0.6"
+    "posthtml": "^0.11.3",
+    "posthtml-parser": "^0.4.1",
+    "posthtml-render": "^1.1.4"
   },
   "devDependencies": {
     "benchmark": "^2.1.4",
-    "coveralls": "^3.0.0",
-    "eslint": "^4.11.0",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "jest": "^21.2.1"
+    "coveralls": "^3.0.2",
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "jest": "^23.4.1"
   },
   "jest": {
     "testEnvironment": "node"
