@@ -18,16 +18,20 @@ npm install posthtml-uglify --save
 ## Usage
 
 ```js
-var posthtml = require('posthtml');
-var uglify = require('posthtml-uglify');
+const posthtml = require('posthtml');
+const uglify = require('posthtml-uglify');
 
 posthtml()
-  .use(uglify({ whitelist: '.bar' }))
+  .use(uglify({ whitelist: ['.bar'] }))
   .process('<style>#foo { color: red } .bar { color: blue }</style><div id="foo" class="bar">baz</div>')
-  .then(function(result) {
+  .then((result) => {
     console.log(result.html); //=> '<style>#xz { color: red } .bar { color: blue }</style><div id="xz" class="bar">baz</div>'
   });
 ```
+
+### Options
+
+- **whitelist** (Array): list of selectors that should not be rewritten by this plugin. For example, an id or class that is used by JavaScript code.
 
 ## Contributing
 
